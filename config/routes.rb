@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :categories
+
+  resources :institutes
+
   resources :answers
 
   resources :questions
