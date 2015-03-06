@@ -6,9 +6,19 @@
 </p>
 
 <p>
+  <strong>Category:</strong>
+  <%= @test.category %>
+</p>
+
+
+<p>
   <strong>Free:</strong>
   <%= @test.free %>
 </p>
+<h2>Questions</h2>
+<% @test.questions.each do |q| %>
+<%= render partial: "questions/view", :locals => {:question => q} %>
+<%end%>
 
 <%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %>

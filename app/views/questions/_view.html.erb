@@ -1,0 +1,15 @@
+<%# local: question %>
+<p>
+  <strong>Title:</strong>
+  <%= question.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= question.description %>
+</p>
+<h3> Answers </h3>
+<% question.answers.each do |a| %>
+<%=render partial: 'answers/view',:locals => {:answer => a} %>
+<%end%>
+<%= link_to 'Edit Question/Answers', edit_test_question_path(question.test,question) %>

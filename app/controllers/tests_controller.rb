@@ -15,10 +15,13 @@ class TestsController < ApplicationController
   # GET /tests/new
   def new
     @test = Test.new
+    @categories = Category.all
   end
 
   # GET /tests/1/edit
   def edit
+    
+    @categories = Category.all
   end
 
   # POST /tests
