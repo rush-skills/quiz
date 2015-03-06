@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
     self.role ||= :free
   end
   
+  def not_student?
+    self.prof? or self.iadmin? or self.admin?
+  end
   def is_paid?
     self and self.institute and not self.iadmin?
   end
