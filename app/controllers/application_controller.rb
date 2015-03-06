@@ -3,6 +3,19 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :authenticate_user!
+  if Rails.env.development?
+    # https://github.com/RailsApps/rails-devise-pundit/issues/10
+    include Pundit
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+    private
+    def user_not_authorized
+      flash[:alert] = "Access denied." # TODO: make sure this isn't hard coded English.
+      redirect_to (request.referrer || root_path) # Send them back to them page they came from, or to the root page.
+    end
+  end 
+
   def after_sign_in_path_for(resource)
     '/dashboard'
   end
