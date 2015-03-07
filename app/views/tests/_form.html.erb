@@ -1,4 +1,6 @@
-<%= form_for(@test) do |f| %>
+
+<%= form_for @test, :html => {:class => 'form-horizontal test-form'} do |f| %>
+  <fieldset>
   <% if @test.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@test.errors.count, "error") %> prohibited this test from being saved:</h2>
@@ -11,19 +13,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title , required: true%>
+  <div class="form-group">
+    <%= f.text_field :title , required: true, :class => 'form-control floating-label',:placeholder => "Name of the test"%>
   </div>
- <div class="field">
-   <%= f.label :category %><br>
-   <%= f.collection_select(:category_id, @categories, :id, :title, {:include_blank => "Select a Category"} ,{ :required => :true}) %>
+ <div class="form-group">
+   <%= f.collection_select(:category_id, @categories, :id, :title, {:include_blank => "Select a Category"} ,{ :required => :true, :class => 'form-control'}) %>
   </div>
-  <div class="field">
-    <%= f.label :free %><br>
-    <%= f.check_box :free %>
+  <div class="form-group">
+    
+    <div class="checkbox" style="padding-top: 0px">
+      <label>
+    <%= f.check_box :free %> Free Test?
+      </label>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit',  :class => 'btn btn-success' %>
   </div>
+</fieldset>
 <% end %>

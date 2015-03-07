@@ -11,7 +11,7 @@ class ProfAndAbovePolicy
   end
 
   def show?
-    @current_user.not_student? and @model.user == @current_user
+    (@current_user.not_student? and @model.user == @current_user) or @current_user.admin? or (@current_user.iadmin? and @model.user.institute == @current_user.institute)
   end
   
   def new?
@@ -27,11 +27,11 @@ class ProfAndAbovePolicy
   end
 
   def update?
-    @current_user.not_student? and @model.user == @current_user
+    (@current_user.not_student? and @model.user == @current_user) or @current_user.admin? or (@current_user.iadmin? and @model.user.institute == @current_user.institute)
   end
 
   def destroy?
-    @current_user.not_student? and @model.user == @current_user
+    (@current_user.not_student? and @model.user == @current_user) or @current_user.admin? or (@current_user.iadmin? and @model.user.institute == @current_user.institute)
   end
 
 end
