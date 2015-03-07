@@ -1,0 +1,2 @@
+class TestPolicy < ProfAndAbovePolicy
+end

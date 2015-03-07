@@ -1,33 +1,38 @@
 class QuestionsController < ApplicationController
-  before_action :set_test, only: [:show, :edit, :update, :destroy]
+  before_action :set_test
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  
+  after_action :verify_authorized
 
   # GET /questions
   # GET /questions.json
   def index
+    authorize Question
     @questions = Question.all
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+    authorize @question
   end
 
   # GET /questions/new
   def new
     @question = Question.new
+    authorize @question
   end
 
   # GET /questions/1/edit
   def edit
+    authorize @question
   end
 
   # POST /questions
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    @question.test_id = @test.id
+    authorize @question
     respond_to do |format|
       if @question.save
         format.html { redirect_to [@test,@question], notice: 'Question was successfully created.' }
@@ -42,6 +47,9 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    
+    @question.test_id = @test.id
+    authorize @question
     respond_to do |format|
       if @question.update(question_params)
         format.html { redirect_to [@test,@question], notice: 'Question was successfully updated.' }
@@ -56,6 +64,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    authorize @question
     @question.destroy
     respond_to do |format|
       format.html { redirect_to test_questions_url, notice: 'Question was successfully destroyed.' }

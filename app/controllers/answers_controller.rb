@@ -1,31 +1,36 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
+  after_action :verify_authorized
+  
   # GET /answers
   # GET /answers.json
   def index
     @answers = Answer.all
+    authorize Answer
   end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
+    authorize @answer
   end
 
   # GET /answers/new
   def new
     @answer = Answer.new
+    authorize @answer
   end
 
   # GET /answers/1/edit
   def edit
+    authorize @answer
   end
 
   # POST /answers
   # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
-
+    authorize @answer
     respond_to do |format|
       if @answer.save
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
@@ -40,6 +45,7 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   def update
+    authorize @answer
     respond_to do |format|
       if @answer.update(answer_params)
         format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
@@ -54,6 +60,7 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   # DELETE /answers/1.json
   def destroy
+    authorize @answer
     @answer.destroy
     respond_to do |format|
       format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }

@@ -14,6 +14,10 @@ class AdminPolicy
     @current_user.admin?
   end
   
+  def edit?
+    @current_user.admin?
+  end
+  
   def new?
     @current_user.admin?
   end

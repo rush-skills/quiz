@@ -1,0 +1,2 @@
+class QuestionPolicy < ProfAndAbovePolicy
+end

@@ -1,31 +1,36 @@
 class InstitutesController < ApplicationController
   before_action :set_institute, only: [:show, :edit, :update, :destroy]
-
+  after_action :verify_authorized
+  
   # GET /institutes
   # GET /institutes.json
   def index
     @institutes = Institute.all
+    authorize Institute
   end
 
   # GET /institutes/1
   # GET /institutes/1.json
   def show
+    authorize @institute
   end
 
   # GET /institutes/new
   def new
     @institute = Institute.new
+    authorize @institute
   end
 
   # GET /institutes/1/edit
   def edit
+    authorize @institute
   end
 
   # POST /institutes
   # POST /institutes.json
   def create
     @institute = Institute.new(institute_params)
-
+    authorize @institute
     respond_to do |format|
       if @institute.save
         format.html { redirect_to @institute, notice: 'Institute was successfully created.' }
@@ -40,6 +45,7 @@ class InstitutesController < ApplicationController
   # PATCH/PUT /institutes/1
   # PATCH/PUT /institutes/1.json
   def update
+    authorize @institute
     respond_to do |format|
       if @institute.update(institute_params)
         format.html { redirect_to @institute, notice: 'Institute was successfully updated.' }
@@ -54,6 +60,7 @@ class InstitutesController < ApplicationController
   # DELETE /institutes/1
   # DELETE /institutes/1.json
   def destroy
+    authorize @institute
     @institute.destroy
     respond_to do |format|
       format.html { redirect_to institutes_url, notice: 'Institute was successfully destroyed.' }

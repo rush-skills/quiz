@@ -1,0 +1,21 @@
+quiz app -
+users , oauth devise
+institute <logo> <name>	
+admin <user> <insti>
+roles - su, admin, verified, freeuser
+test name hasmany questions free? <insti> <profid> <category>
+category title
+questions title description hasmany answers 
+answers  - text, correct ans?
+cocoon nesting
+answer portal
+quiz_attempt user ques
+quesqa <ques> <ans> correct? <ques_attempt>
+
+login -> if su -> crud insti, crud admin
+		if admin -> crud prof, crud students, crud insti edit
+		if prof -> quiz(self) crud
+		if verified -> all of that insti + all other free
+		if free -> all free
+
+		click on quiz -> goto quiz landing page -> answer all the questions -> get stats	

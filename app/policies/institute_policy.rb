@@ -1,0 +1,2 @@
+class InstitutePolicy < AdminPolicy
+end

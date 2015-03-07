@@ -7,7 +7,12 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @test.category %>
+  <%= @test.category.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @test.user.name %>
 </p>
 
 
@@ -19,6 +24,6 @@
 <% @test.questions.each do |q| %>
 <%= render partial: "questions/view", :locals => {:question => q} %>
 <%end%>
-
+<%= link_to 'Add question', new_test_question_path(@test) %><br>
 <%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %>

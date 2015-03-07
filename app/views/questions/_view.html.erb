@@ -12,4 +12,4 @@
 <% question.answers.each do |a| %>
 <%=render partial: 'answers/view',:locals => {:answer => a} %>
 <%end%>
-<%= link_to 'Edit Question/Answers', edit_test_question_path(question.test,question) %>
+<%= link_to 'Edit Question/Answers', edit_test_question_path(question.test,question) %><br>
