@@ -1,0 +1,12 @@
+<%= link_to test do %>
+  <div class="col-md-4 col-sm-6 col-lg-3 test-listing">
+    <div class="well well-lg">
+      <h4><%= test.title %></h4>
+      <h5><b>Category:</b> <%= test.category.title %></h5>
+      <h5><b>Type:</b> <% if test.free %>Free<%else%>Paid<%end%></h5>
+      <h5><b>Created by:</b> <%= link_to test.user.name, test.user %></h5>
+      <%= link_to 'Edit', edit_test_path(test), :class => 'btn btn-success' %>
+      <%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+    </div>
+  </div>
+<%end%>
