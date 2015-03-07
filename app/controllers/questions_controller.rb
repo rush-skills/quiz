@@ -3,12 +3,6 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
-  # GET /questions
-  # GET /questions.json
-  def index
-    authorize Question
-    @questions = Question.all
-  end
 
   # GET /questions/1
   # GET /questions/1.json
@@ -35,8 +29,8 @@ class QuestionsController < ApplicationController
     authorize @question
     respond_to do |format|
       if @question.save
-        format.html { redirect_to [@test,@question], notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
+        format.html { redirect_to [@test], notice: 'Question was successfully created.' }
+        format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -52,8 +46,8 @@ class QuestionsController < ApplicationController
     authorize @question
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to [@test,@question], notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
+        format.html { redirect_to [@test], notice: 'Question was successfully updated.' }
+        format.json { render :show, status: :ok, location: @test }
       else
         format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }

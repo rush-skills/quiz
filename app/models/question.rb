@@ -15,7 +15,7 @@ class Question < ActiveRecord::Base
   has_many :answers
   validates :title, :presence => true
   validates :test_id, :presence => true
-  accepts_nested_attributes_for :answers, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :answers, :reject_if =>  proc { |a| a[:text].blank? }, :allow_destroy => true
   def user
     self.test.user
   end

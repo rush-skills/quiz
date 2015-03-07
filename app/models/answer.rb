@@ -12,7 +12,6 @@
 
 class Answer < ActiveRecord::Base
   belongs_to :question
-  validates :text, :presence => {:message => 'answer cannot be blank, not saved'}
   def user
     self.question.test.user
   end
