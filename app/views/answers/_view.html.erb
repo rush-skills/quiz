@@ -1,11 +1,4 @@
 <%# local: answer %>
 
-<p>
-  <strong>Text:</strong>
   <%= answer.text %>
-</p>
-
-<p>
-  <strong>Correct:</strong>
-  <%= answer.correct %>
-</p>
+<% if answer.correct %><span class="correct-answer"><i class="mdi-action-spellcheck"></i></span><%end%>

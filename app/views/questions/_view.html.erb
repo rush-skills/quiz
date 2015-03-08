@@ -1,15 +1,18 @@
 <%# local: question %>
-<p>
-  <strong>Title:</strong>
+<div class="well well-sm question-well">
+<h4>
   <%= question.title %>
-</p>
+</h4>
 
 <p>
   <strong>Description:</strong>
   <%= question.description %>
 </p>
 <h3> Answers </h3>
+<ul>
 <% question.answers.each do |a| %>
-<%=render partial: 'answers/view',:locals => {:answer => a} %>
+  <li><%=render partial: 'answers/view',:locals => {:answer => a} %></li>
 <%end%>
-<%= link_to 'Edit Question/Answers', edit_test_question_path(question.test,question) %><br>
+</ul>
+<%= link_to 'Edit', edit_test_question_path(question.test,question) , :class => 'btn btn-success'%><br>
+</div>
