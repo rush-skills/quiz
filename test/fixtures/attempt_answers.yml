@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  answer_id: 
+  attempt_question_id: 
+  choosen: false
+
+two:
+  answer_id: 
+  attempt_question_id: 
+  choosen: false

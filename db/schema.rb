@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306101814) do
+ActiveRecord::Schema.define(version: 20150310050036) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "text"
@@ -22,6 +22,28 @@ ActiveRecord::Schema.define(version: 20150306101814) do
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+
+  create_table "attempt_answers", force: :cascade do |t|
+    t.integer  "answer_id"
+    t.integer  "attempt_question_id"
+    t.boolean  "choosen"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "attempt_answers", ["answer_id"], name: "index_attempt_answers_on_answer_id"
+  add_index "attempt_answers", ["attempt_question_id"], name: "index_attempt_answers_on_attempt_question_id"
+
+  create_table "attempt_questions", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "test_attempt_id"
+    t.decimal  "mark"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "attempt_questions", ["question_id"], name: "index_attempt_questions_on_question_id"
+  add_index "attempt_questions", ["test_attempt_id"], name: "index_attempt_questions_on_test_attempt_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -45,6 +67,18 @@ ActiveRecord::Schema.define(version: 20150306101814) do
   end
 
   add_index "questions", ["test_id"], name: "index_questions_on_test_id"
+
+  create_table "test_attempts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "test_id"
+    t.string   "marks"
+    t.time     "time_taken"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "test_attempts", ["test_id"], name: "index_test_attempts_on_test_id"
+  add_index "test_attempts", ["user_id"], name: "index_test_attempts_on_user_id"
 
   create_table "tests", force: :cascade do |t|
     t.string   "title"

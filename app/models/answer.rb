@@ -12,6 +12,7 @@
 
 class Answer < ActiveRecord::Base
   belongs_to :question
+  has_many :attempt_answers
   def user
     self.question.test.user
   end

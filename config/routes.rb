@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :attempt_answers
+
+  resources :attempt_questions
+
+  resources :test_attempts
+
   resources :categories
 
   resources :institutes

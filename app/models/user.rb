@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   enum role: [:free, :paid, :prof, :iadmin, :admin]
   after_initialize :set_default_role, :if => :new_record?
   has_many :tests
+  has_many :test_attempts
   has_one :institute
   validates :name, presence: true
   def set_default_role
