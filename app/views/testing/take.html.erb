@@ -1,41 +1,43 @@
 <div class="well">
 	<h3> Title: <%= @test.title %></h3>
 	<h3> Category: <%= @test.category.title %></h3>
-	<p>Test attempt for <%= @test_attempt.user %> for <%= link_to test_path(@test) %></p>
+	<p>Test attempt for <%= @test_attempt.user %> for <%= link_to "test", test_path(@test) %></p>
 	<h1> Questions </h1>
 	<div class="questions_slick">
-		<% @attempt_questions.each do |aq| %>
+		<% @attempt_questions.each_with_index do |aq,index| %>
 			<div class="">
-			<%= aq.question.title %>
-			<h3>Answers</h3>
-			<% @attempt_answers[aq.id].each do |aa| %>
-			<div class="test_answer">
-			  <div class="checkbox" >
-			    <label>
-			      <input type="checkbox" 
-			      <% if aa.choosen %> checked="" <%end%> class="attempt_answer" id="<%=aa.id%>"> 
-			      <%= aa.answer.text %>
-			      
-			    </label>
-			  </div>
-			</div>
-			<%end%>
+				<h2>
+					Question No: <span class="qno"><%=index+1%></span>
+				</h2>
+				<%= aq.question.title %>
+				<h3>Answers</h3>
+				<% @attempt_answers[aq.id].each do |aa| %>
+					<div class="test_answer">
+					  <div class="checkbox" >
+					    <label>
+					      <input type="checkbox" 
+					      <% if aa.choosen %> checked="" <%end%> class="attempt_answer" id="<%=aa.id%>"> 
+					      <%= aa.answer.text %>
+					      
+					    </label>
+					  </div>
+					</div>
+				<%end%>
 			</div>
 		<%end%>
 	</div>
 </div>
 <script>
-$(document).on('click','.attempt_answer',function () {
-	$.ajax({
-  url: '/taketest/'+<%=@test_attempt.id.to_s%> + '/' + this.id
-});
-});
 $(document).on('ready',function(){
+	$(document).on('click','.attempt_answer',function () {
+		$.ajax({
+	  url: '/taketest/'+<%=@test_attempt.id.to_s%> + '/' + this.id
+		});
+	});
   $('.questions_slick').slick({
 	  dots: true,
 	  customPaging: function(slider, i) { 
-	    // this example would render "tabs" with titles
-	    return '<button class="tab">' + $(slider.$slides[i]).find('h3').text() + '</button>';
+	    return '<button class="tab">' + $(slider.$slides[i]).find('h2').find('span').text() + '</button>';
 	  },
 	});
 })

@@ -91,3 +91,7 @@ section {
     color: $state-danger-text;
   }
 }
+
+.navbar-inverse .navbar-nav > li > a {
+  color: rgba(255,255,255,.84);
+}
