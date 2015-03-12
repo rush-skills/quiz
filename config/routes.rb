@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   
   resources :answers
   
-
-
+  get '/choosetest' => 'testing#index'
+  get '/taketest/:id' => 'testing#take', as: 'take_test'
+  get '/taketest/:test_id/:id' => 'testing#checked', as: 'checked_test'
   resources :tests do
     resources :questions
   end

@@ -1,0 +1,8 @@
+
+  <div class="col-md-4 col-sm-6 col-lg-3 test-listing">
+    <div class="well well-lg">
+      <h4><%= test.title %></h4>
+      <h5><b>Category:</b> <%= test.category.title %></h5>
+      <%= link_to 'Take', take_test_path(test), :class => 'btn btn-success' %>
+    </div>
+  </div>

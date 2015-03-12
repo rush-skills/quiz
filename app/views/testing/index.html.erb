@@ -1,0 +1,5 @@
+<div class="row well well-lg">
+<% @tests.each do |test| %>
+<%=render partial: 'tests/student_view', locals: {test: test} %>
+<%end%>
+</div>
