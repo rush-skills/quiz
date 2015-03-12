@@ -37,7 +37,7 @@ $(document).on('ready',function(){
   $('.questions_slick').slick({
 	  dots: true,
 	  customPaging: function(slider, i) { 
-	    return '<button class="tab">' + $(slider.$slides[i]).find('h2').find('span').text() + '</button>';
+	    return '<div class="slick-tab-ques">' + $(slider.$slides[i]).find('h2').find('span').text() + '</div>';
 	  },
 	});
 })
