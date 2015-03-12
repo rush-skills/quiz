@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require material.min
 //= require ripples.min
+//= require slick.min
 //= require_tree .
