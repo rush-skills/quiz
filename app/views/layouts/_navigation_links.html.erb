@@ -10,6 +10,8 @@
 <% if user_signed_in? %>
   <% if current_user.not_student? %>
     <li><%= link_to 'Tests', tests_path %></li>
+  <%else%>
+    <li><%= link_to 'Tests', choose_test_path %></li>
   <%end%>
   <% if current_user.admin? %>
     <li><%= link_to 'Admin', '/admin' %></li>

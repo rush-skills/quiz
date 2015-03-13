@@ -10,7 +10,12 @@
 				<h2>
 					Question No: <span class="qno"><%=index+1%></span>
 				</h2>
+				<h4>
 				<%= aq.question.title %>
+				</h4>
+				<p>
+				<%= aq.question.description %>
+				</p>
 				<h3>Answers</h3>
 				<% @attempt_answers[aq.id].each do |aa| %>
 					<div class="test_answer">

@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20150313105637) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "text"
-    t.boolean  "correct"
+    t.boolean  "correct",     default: false
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20150313105637) do
   create_table "attempt_answers", force: :cascade do |t|
     t.integer  "answer_id"
     t.integer  "attempt_question_id"
-    t.boolean  "choosen"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.boolean  "choosen",             default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "attempt_answers", ["answer_id"], name: "index_attempt_answers_on_answer_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150313105637) do
   create_table "attempt_questions", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "test_attempt_id"
-    t.decimal  "mark"
+    t.boolean  "correct",         default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "review",          default: false

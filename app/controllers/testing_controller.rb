@@ -59,7 +59,8 @@ class TestingController < ApplicationController
   def result
   	@test_attempt = TestAttempt.find(params[:id])
   	@questions = @test_attempt.attempt_questions
-  	@correct = @questions.where(mark: 1)
+  	@correct = @questions.where(correct: true)
+  	@correct = @test_attempt.marks
   end
 
   def calculate_marks test_attempt
@@ -74,10 +75,10 @@ class TestingController < ApplicationController
   			end
   		end
   		if correct
-  			ques.mark = 1
+  			ques.correct = true
   			total +=1
   		else
-  			ques.mark = 0
+  			ques.correct = false
   		end
   		ques.save!
   	end

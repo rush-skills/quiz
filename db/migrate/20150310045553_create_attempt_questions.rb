@@ -3,7 +3,7 @@ class CreateAttemptQuestions < ActiveRecord::Migration
     create_table :attempt_questions do |t|
       t.references :question, index: true
       t.references :test_attempt, index: true
-      t.decimal :mark
+      t.boolean :correct, default: false
 
       t.timestamps null: false
     end
