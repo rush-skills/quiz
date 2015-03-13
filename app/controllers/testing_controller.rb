@@ -20,14 +20,18 @@ class TestingController < ApplicationController
 	    	}
 	    }
 	  else
-	  	@attempt_questions = @test_attempt.attempt_questions
-	  	@attempt_answers =  Hash.new([])
-	    @attempt_questions.each { |x| 
-	    	answers = x.question.answers
-	    	answers.each { |a|
-	    		@attempt_answers[x.id] += [AttemptAnswer.where(attempt_question: x,answer: a).first]
-	    	}
-	    }
+	  	unless @test_attempt.completed
+		  	@attempt_questions = @test_attempt.attempt_questions
+		  	@attempt_answers =  Hash.new([])
+		    @attempt_questions.each { |x| 
+		    	answers = x.question.answers
+		    	answers.each { |a|
+		    		@attempt_answers[x.id] += [AttemptAnswer.where(attempt_question: x,answer: a).first]
+		    	}
+		    }
+		  else
+		  	redirect_to test_result_path @test_attempt
+		  end
 		end
   end
   def checked
@@ -44,5 +48,40 @@ class TestingController < ApplicationController
         format.json { render json: "Not Success", status: :unprocessable_entity }
       end
     end
+  end
+  def submit
+  	@test_attempt = TestAttempt.find(params[:id])
+  	@test_attempt.completed = true
+  	@test_attempt.save!
+  	calculate_marks @test_attempt
+  	redirect_to test_result_path(@test_attempt)
+  end
+  def result
+  	@test_attempt = TestAttempt.find(params[:id])
+  	@questions = @test_attempt.attempt_questions
+  	@correct = @questions.where(mark: 1)
+  end
+
+  def calculate_marks test_attempt
+  	questions = test_attempt.attempt_questions
+  	total = 0
+  	questions.each do |ques|
+  		answers = ques.attempt_answers
+  		correct = true
+  		answers.each do |ans|
+  			unless ans.choosen == ans.answer.correct
+  				correct = false
+  			end
+  		end
+  		if correct
+  			ques.mark = 1
+  			total +=1
+  		else
+  			ques.mark = 0
+  		end
+  		ques.save!
+  	end
+  	test_attempt.marks = total.to_s
+  	test_attempt.save!
   end
 end

@@ -1,0 +1,5 @@
+<div class="well">
+	<h2>Results for <b><%= @test_attempt.test.title %></b> in <b><%= @test_attempt.test.category.title %></b> by <b><%= current_user.name %></b></h2>
+	<h3><b>Total marks:</b> <%= @questions.count %></h3>
+	<h3><b>Marks Obtained:</b> <%= @test_attempt.marks %></h3>
+</div>

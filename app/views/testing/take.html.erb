@@ -2,6 +2,7 @@
 	<h3> Title: <%= @test.title %></h3>
 	<h3> Category: <%= @test.category.title %></h3>
 	<p>Test attempt for <%= @test_attempt.user %> for <%= link_to "test", test_path(@test) %></p>
+	<%= link_to "Submit Test", submit_test_path(@test_attempt), method: :post, :class => "btn btn-success" %>
 	<h1> Questions </h1>
 	<div class="questions_slick">
 		<% @attempt_questions.each_with_index do |aq,index| %>
@@ -28,17 +29,15 @@
 	</div>
 </div>
 <script>
-$(document).on('ready',function(){
-	$(document).on('click','.attempt_answer',function () {
-		$.ajax({
-	  url: '/taketest/'+<%=@test_attempt.id.to_s%> + '/' + this.id
-		});
-	});
   $('.questions_slick').slick({
 	  dots: true,
 	  customPaging: function(slider, i) { 
 	    return '<div class="slick-tab-ques">' + $(slider.$slides[i]).find('h2').find('span').text() + '</div>';
 	  },
 	});
-})
+	$(document).on('click','.attempt_answer',function () {
+		$.ajax({
+	  url: '/taketest/'+<%=@test_attempt.id.to_s%> + '/' + this.id
+		});
+	});
 </script>
