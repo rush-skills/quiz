@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/results/:id' => 'testing#result', as: 'test_result'
   post '/taketest/:id' => 'testing#submit', as: 'submit_test'
   get '/taketest/:test_id/:id' => 'testing#checked', as: 'checked_test'
+  get '/taketest/:test_id/review/:id' => 'testing#review', as: 'review_test'
   resources :tests do
     resources :questions
   end

@@ -49,6 +49,21 @@ class TestingController < ApplicationController
       end
     end
   end
+  def review
+  	@test_attempt = TestAttempt.find(params[:test_id])
+  	@question = AttemptQuestion.find(params[:id])
+  	@question.review = (not @question.review)
+  	if @question.review.nil?
+  		@question.review = true
+  	end
+  	respond_to do |format|
+      if @question.save
+        format.json { render json: "Success", status: :ok}
+      else
+        format.json { render json: "Not Success", status: :unprocessable_entity }
+      end
+    end
+  end
   def submit
   	@test_attempt = TestAttempt.find(params[:id])
   	@test_attempt.completed = true

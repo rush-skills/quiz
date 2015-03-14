@@ -8,14 +8,29 @@
 		<% @attempt_questions.each_with_index do |aq,index| %>
 			<div class="">
 				<h2>
-					Question No: <span class="qno"><%=index+1%></span>
+					Question No: <span class="qno"><%=index+1%></span> 
 				</h2>
+				<span class="pull-right">
+					<% if aq.review %>
+						<span class="btn btn-danger review" data-qid="<%=aq.id%>" data-index="<%=index%>">IN REVIEW</span>
+					<% else %>
+						<span class="btn btn-success review" data-qid="<%=aq.id%>" data-index="<%=index%>">REVIEW</span>
+					<%end%>
+				</span>
 				<h4>
 				<%= aq.question.title %>
 				</h4>
 				<p>
 				<%= aq.question.description %>
 				</p>
+				<% if aq.review %>
+					<script>
+						$(document).ready(function(){
+						$($('ul.slick-dots li')[<%=index%>]).toggleClass('red');
+							
+						});
+					</script>
+				<%end%>
 				<h3>Answers</h3>
 				<% @attempt_answers[aq.id].each do |aa| %>
 					<div class="test_answer">
@@ -44,5 +59,16 @@
 		$.ajax({
 	  url: '/taketest/'+<%=@test_attempt.id.to_s%> + '/' + this.id
 		});
+	});
+	$(document).on('click','.review',function () {
+		$.ajax({
+		  url: '/taketest/'+<%=@test_attempt.id.to_s%> + '/review/' + $(this).data('qid')
+		});
+		$($('ul.slick-dots li')[$(this).data('index')]).toggleClass('red');
+		$(this).toggleClass('btn-success');
+		$(this).toggleClass('btn-danger');
+		$(this).text(function(){
+      return $(this).text()=="REVIEW" ?"IN REVIEW":"REVIEW" ; 
+    });;
 	});
 </script>
