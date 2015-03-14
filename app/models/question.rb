@@ -16,6 +16,7 @@ class Question < ActiveRecord::Base
   validates :title, :presence => true
   validates :test_id, :presence => true
   has_many :attempt_questions
+  mount_uploader :image, ImageUploader
   accepts_nested_attributes_for :answers, :reject_if =>  proc { |a| a[:text].blank? }, :allow_destroy => true
   def user
     self.test.user

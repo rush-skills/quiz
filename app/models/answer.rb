@@ -13,6 +13,7 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
   has_many :attempt_answers
+  mount_uploader :image, ImageUploader
   def user
     self.question.test.user
   end

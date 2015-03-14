@@ -19,6 +19,10 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
   <h3>Answers</h3>
   <div id="answers">
     <%= f.fields_for :answers do |answer| %>

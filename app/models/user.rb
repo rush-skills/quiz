@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :test_attempts
   has_one :institute
   validates :name, presence: true
+  mount_uploader :image, ImageUploader
   def set_default_role
     self.role ||= :free
   end

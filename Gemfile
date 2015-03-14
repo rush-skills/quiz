@@ -8,8 +8,9 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem "cocoon"
 gem 'annotate'
-gem 'faker'
+gem 'carrierwave'
 group :development, :test do
+  gem 'faker'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
