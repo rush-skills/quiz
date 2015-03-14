@@ -5,7 +5,7 @@
 #  id                  :integer          not null, primary key
 #  answer_id           :integer
 #  attempt_question_id :integer
-#  choosen             :boolean
+#  choosen             :boolean          default("f")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #

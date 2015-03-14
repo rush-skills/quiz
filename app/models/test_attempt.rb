@@ -9,6 +9,7 @@
 #  time_taken :time
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  completed  :boolean          default("f")
 #
 
 class TestAttempt < ActiveRecord::Base

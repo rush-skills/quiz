@@ -9,6 +9,7 @@
 #  time_taken :time
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  completed  :boolean          default("f")
 #
 
 require 'test_helper'
