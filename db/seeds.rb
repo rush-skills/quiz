@@ -13,11 +13,16 @@ puts 'CREATED ADMIN USER: ' << user.email
 #Create Admin
 User.create!(name: "Admin", email: "admin@example.com", password: "12345678", password_confirmation: "12345678", role: 4)
 
+#Create Packages
+iit = Package.create!(name: "IIT JEE", remote_image_url: "http://djiitphysics.com/images/iit.jpg")
+pmt = Package.create!(name: "AIPMT", remote_image_url: "http://www.livepunjab.com/files/AIPMT%202014%20results%20to%20be%20out%20soon.jpg")
 #Create Categories
-Category.create!(title: "Physics")
-Category.create!(title: "Chemistry")
-Category.create!(title: "Biology")
-Category.create!(title: "Maths")
+Category.create!(title: "Physics", package: iit)
+Category.create!(title: "Chemistry", package: iit)
+Category.create!(title: "Maths", package: iit)
+Category.create!(title: "Biology", package: pmt)
+Category.create!(title: "Botany", package: pmt)
+Category.create!(title: "Zoology", package: pmt)
 
 #Create Institutes
 Institute.create!(name: "Test Institute 1")
