@@ -10,6 +10,7 @@
 #
 
 class Institute < ActiveRecord::Base
-  validates :name, :presence => {:message => 'Institute name cannot be blank, not saved'}
+  validates :name, :presence => {:message => ' cannot be blank, not saved'}
   has_many :users
+  mount_uploader :image, ImageUploader
 end

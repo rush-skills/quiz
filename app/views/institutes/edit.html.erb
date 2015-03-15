@@ -1,6 +1,7 @@
-<h1>Editing Institute</h1>
-
+<div class="well well-lg col-md-6 col-md-offset-3">
+<h1>
+<%= link_to @institute do %><button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-navigation-arrow-back"></i></button><%end%>
+Edit Institute
+</h1>
 <%= render 'form' %>
-
-<%= link_to 'Show', @institute %> |
-<%= link_to 'Back', institutes_path %>
+</div>

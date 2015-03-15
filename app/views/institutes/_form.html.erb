@@ -1,25 +1,23 @@
+
 <%= form_for(@institute) do |f| %>
-  <% if @institute.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@institute.errors.count, "error") %> prohibited this institute from being saved:</h2>
-
-      <ul>
-      <% @institute.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="inputs authform">
+    <%= errors_for @institute  %>
+    <div class="form-group">
+      <%= f.text_field :name, class: 'form-control floating-label', placeholder: "Institute name" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :details %><br>
-    <%= f.text_area :details %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <div class="form-group">
+      <%= f.text_area :details, class: 'form-control floating-label', placeholder: "Details of the institute" %>
+    </div>
+    <div class="form-group">
+      
+      <label for="inputFile" class="col-lg-2 control-label">Logo</label>
+        <div class="col-lg-10">
+            <input type="text" readonly="" class="form-control floating-label" placeholder="Browse...">
+             <%= f.file_field :image, :id => "inputFile"%>
+        </div>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Create", :class => 'btn btn-success' %>
+    </div>
   </div>
 <% end %>
