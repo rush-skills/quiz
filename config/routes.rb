@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :packages
+
   resources :attempt_answers
 
   resources :attempt_questions
