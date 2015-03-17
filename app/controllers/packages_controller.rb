@@ -29,10 +29,8 @@ class PackagesController < ApplicationController
     respond_to do |format|
       if @package.save
         format.html { redirect_to @package, notice: 'Package was successfully created.' }
-        format.json { render :show, status: :created, location: @package }
       else
         format.html { render :new }
-        format.json { render json: @package.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +41,8 @@ class PackagesController < ApplicationController
     respond_to do |format|
       if @package.update(package_params)
         format.html { redirect_to @package, notice: 'Package was successfully updated.' }
-        format.json { render :show, status: :ok, location: @package }
       else
         format.html { render :edit }
-        format.json { render json: @package.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class PackagesController < ApplicationController
     @package.destroy
     respond_to do |format|
       format.html { redirect_to packages_url, notice: 'Package was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

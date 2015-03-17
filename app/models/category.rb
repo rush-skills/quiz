@@ -11,6 +11,6 @@
 
 class Category < ActiveRecord::Base
   validates :title, :presence => {:message => 'Category cannot be blank, not saved'}
-  has_many :test
+  has_many :tests
   belongs_to :package
 end

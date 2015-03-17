@@ -1,27 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="well">
+<h1>Listing Categories<span class="pull-right"><%= link_to new_category_path do %><button class="btn btn-fab btn-raised btn-success"><i class="mdi-content-add"></i></button><%end%></span></h1><br>
 
-<h1>Listing Categories</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+    <div class="row nolink">
     <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.title %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%=link_to category do %>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="well">
+        <h5>
+        <b>Name:</b><%= category.title %><br><br>
+        <b>Package:</b><div class="linkblue"><%=link_to category.package.name,category.package if category.package%></div>
+        </h5>
+        </div>
+      </div>
+      <%end%>
     <% end %>
-  </tbody>
-</table>
+    </div>
 
-<br>
+</div>
 
-<%= link_to 'New Category', new_category_path %>

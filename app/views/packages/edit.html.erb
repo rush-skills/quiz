@@ -1,6 +1,7 @@
-<h1>Editing Package</h1>
-
+<div class="well well-lg col-md-6 col-md-offset-3">
+<h1>
+<%= link_to @package do %><button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-navigation-arrow-back"></i></button><%end%>
+Editing <%=@package.name%>
+</h1>
 <%= render 'form' %>
-
-<%= link_to 'Show', @package %> |
-<%= link_to 'Back', packages_path %>
+</div>

@@ -1,25 +1,16 @@
 <%= form_for(@category) do |f| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
-      <ul>
-      <% @category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="inputs authform">
+    <%= errors_for @category%>
+
+    <div class="form-group">
+      <%= f.text_field :title , class: 'form-control floating-label', placeholder: "Title"%>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :package %><br>
-    <%= f.collection_select :package, Package.all, :id, :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <div class="form-group">
+      <%= f.collection_select :package_id, Package.all, :id, :name, {},:class => "form-control floating-label" , :placeholder => "Select Package" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Submit", :class => 'btn btn-success'%>
+    </div>
   </div>
 <% end %>

@@ -76,6 +76,17 @@ main, .test-form{
   max-height: 400px;
 }
 .img-qaa img{
-  max-width:600px;
-  max-height: 300px;
+  max-width:100%;
+  max-height: 200px;
+}
+.nolink a,.nolink:hover{
+  color:black;
+  text-decoration: none !important;
+}
+.linkblue, .linkblue a{
+  color:rgb(74, 176, 227);
+  display: inline;
+}
+.pwell{
+  min-height: 500px;
 }
