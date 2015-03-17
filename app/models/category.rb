@@ -6,6 +6,7 @@
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  package_id :integer
 #
 
 class Category < ActiveRecord::Base

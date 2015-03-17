@@ -18,6 +18,7 @@
 #  name                   :string
 #  role                   :integer
 #  institute_id           :integer
+#  image                  :string
 #
 
 require 'test_helper'

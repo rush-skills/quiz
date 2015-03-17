@@ -17,12 +17,12 @@ User.create!(name: "Admin", email: "admin@example.com", password: "12345678", pa
 iit = Package.create!(name: "IIT JEE", remote_image_url: "http://djiitphysics.com/images/iit.jpg")
 pmt = Package.create!(name: "AIPMT", remote_image_url: "http://www.livepunjab.com/files/AIPMT%202014%20results%20to%20be%20out%20soon.jpg")
 #Create Categories
-Category.create!(title: "Physics", package: iit)
-Category.create!(title: "Chemistry", package: iit)
-Category.create!(title: "Maths", package: iit)
-Category.create!(title: "Biology", package: pmt)
-Category.create!(title: "Botany", package: pmt)
-Category.create!(title: "Zoology", package: pmt)
+Category.create!(title: "Physics", package_id: 1)
+Category.create!(title: "Chemistry", package_id: 1)
+Category.create!(title: "Maths", package_id: 1)
+Category.create!(title: "Biology", package_id: 2)
+Category.create!(title: "Botany", package_id: 2)
+Category.create!(title: "Zoology", package_id: 2)
 
 #Create Institutes
 Institute.create!(name: "Test Institute 1")

@@ -18,6 +18,7 @@
 #  name                   :string
 #  role                   :integer
 #  institute_id           :integer
+#  image                  :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
