@@ -8,6 +8,12 @@
   <strong>Description:</strong>
   <%= question.description %>
 </p>
+
+<% if question.image %>
+<div class="img-qa">
+  <%= image_tag question.image %>
+</div>
+<%end%>
 <h3> Answers </h3>
 <ul>
 <% question.answers.each do |a| %>
