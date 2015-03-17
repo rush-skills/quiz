@@ -1,16 +1,21 @@
 <div class="nested-fields">
-  <div class="field">
-    
-    <%= f.text_field :text %>
+<hr>
+  <div class="form-group">
+    <%= f.text_field :text, class: 'form-control', placeholder: "Answer text"  %>
   </div>
-
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+  <div class="form-group">
+      <label for="inputFile" class="col-lg-2 control-label">Image</label>
+      <div class="col-lg-10">
+          <input type="text" readonly="" class="form-control floating-label" placeholder="Browse...">
+           <%= f.file_field :image, :id => "inputFile"%>
+      </div>
   </div>
-  <div class="field">
-    <%= f.check_box :correct%>
-    <%= f.label :correct%>
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :correct%> Correct Answer?
+      </label>
+    </div>
   </div>
 </div>
   <%= link_to_remove_association "remove answer", f,

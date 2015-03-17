@@ -19,3 +19,20 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function() {
+    $('form')
+      .on('cocoon:before-insert', function() {
+         $.material.init();
+      })
+      .on('cocoon:after-insert', function() {
+         $.material.init();
+      })
+      .on("cocoon:before-remove", function() {
+         $.material.init();
+      })
+      .on("cocoon:after-remove", function() {
+         $.material.init();
+      });
+
+});

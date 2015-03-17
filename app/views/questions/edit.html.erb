@@ -1,6 +1,7 @@
-<h1>Editing Question</h1>
-
+<div class="well well-lg col-md-6 col-md-offset-3">
+<h1>
+<%= link_to test_path(@test)  do %><button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-navigation-arrow-back"></i></button><%end%>
+Editing a question
+</h1>
 <%= render 'form' %>
-
-<%= link_to 'Show', [@test,@question] %> |
-<%= link_to 'Back', test_path(@test) %>
+</div>
