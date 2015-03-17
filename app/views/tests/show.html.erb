@@ -1,37 +1,31 @@
 
 
 
-<div class="row well well-lg">
+<div class="well well-lg">
+<%= link_to tests_path do %><button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-navigation-arrow-back"></i></button><%end%>
+<div class="row">
   <div class="col-md-3">
-    <p>
-      <strong>Name:</strong>
-      <%= @test.title %>
-    </p>
-
-    <p>
+    <h4 style="margin-top: 50px;">
       <strong>Category:</strong>
-      <%= @test.category.title %>
-    </p>
-
-    <p>
+      <%= link_to @test.category.title,@test.category %><br><br>
+      <strong>Package:</strong>
+      <%= link_to @test.category.package.name, @test.category.package %><br><br>
       <strong>User:</strong>
-      <%= link_to @test.user.name, @test.user %>
-    </p>
-
-
-    <p>
+      <%= link_to @test.user.name, @test.user %><br><br>
       <strong>Free:</strong>
-      <%= @test.free %>
-    </p>
+      <%= @test.free %><br><br>
     <%= link_to 'Edit', edit_test_path(@test), :class => 'btn btn-success' %>
+    <%= link_to 'Delete', @test, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+    </h4>
   </div>
   <div class="col-md-9">
-    <h2>Questions</h2>
+    <h1><%=@test.title%><br>
+    </h1>
+    <hr>
+    <h2>Questions<span class="pull-right"><%=link_to new_test_question_path(@test) do %><button class="btn btn-fab btn-raised btn-success"><i class="mdi-content-add"></i></button><%end%></span><br><br></h2>
     <% @test.questions.each do |q| %>
       <%= render partial: "questions/view", :locals => {:question => q} %>
     <%end%>
-    <%= link_to 'Add question', new_test_question_path(@test) %><br>
-     |
-    <%= link_to 'Back', tests_path %>
   </div>
+</div>
 </div>
