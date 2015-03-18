@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @institutes = Institute.all
     authorize User
   end
 

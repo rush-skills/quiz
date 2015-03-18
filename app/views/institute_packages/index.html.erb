@@ -12,10 +12,10 @@
   <hr>
   <div class="row">
     <% @institute_packages.each do |institute_package| %>
-        <div class="col-sm-3"><%= link_to institute_package.institute %></div>
-        <div class="col-sm-3"><%= link_to institute_package.package %></div>
-        <div class="col-sm-3"><%= link_to institute_package.user %></div>
-        <div class="col-sm-3"><%= link_to 'Edit', edit_institute_package_path(institute_package) ,:class => 'btn btn-warning btn-sm twopxmargin'%>
+        <div class="col-sm-3"><%= alink_to institute_package.institute %></div>
+        <div class="col-sm-3"><%= alink_to institute_package.package %></div>
+        <div class="col-sm-3"><%= alink_to institute_package.user %></div>
+        <div class="col-sm-3"><%= alink_to 'Edit', edit_institute_package_path(institute_package) ,:class => 'btn btn-warning btn-sm twopxmargin'%>
         <%= link_to 'Destroy', institute_package, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-danger btn-sm twopxmargin' %></div>
     <% end %>
   </div>

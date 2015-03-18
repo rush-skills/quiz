@@ -18,12 +18,12 @@ module ApplicationHelper
     end
 
 end
-def link_to( *args )
+def alink_to( *args )
     options = args.extract_options!
     if args.size == 1 && args.first.is_a?( ActiveRecord::Base )
-      super( *([ args.first, args.first ] + [ options ]) )
+      link_to( *([ args.first, args.first ] + [ options ]) )
     else
-      super( *( args + [ options ] ) )
+      link_to( *( args + [ options ] ) )
     end
   end
 end

@@ -1,14 +1,18 @@
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-sm-2">
 	 <%= link_to user.name, user if user.name %>
 	</div>
-	<div class="col-md-3">
+	<div class="col-sm-3">
 		<%= link_to user.email, user if user.email %>
 	</div>
-	<div class="col-md-3">
-		<%= link_to user.institute.name, user.institute if user.institute  %>
-	</div>
-	<div class="col-md-3">
-		<%= user.role %>
-	</div>
+	<div class="col-sm-7 row">
+	<%= form_for(user) do |f| %>
+    <div class="col-sm-5"><%= f.collection_select(:institute_id, @institutes, :id, :name,{:include_blank => "Choose an institute"},{ :required => :true, :class => 'form-control'}) %></div>
+    <div class="col-sm-3"><%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},{},{:class => 'form-control'}) %></div>
+    <div class="col-sm-4">
+    	<%= f.submit 'EDIT', :class => 'button-xs  btn-primary' %>
+    	<%= link_to("DELETE", user_path(user), :data => { :confirm => "Are you sure you want to delete "+user.name.to_s+" Email: "+user.email.to_s+" joined_on: "+user.created_at.to_s+"?" }, :method => :delete, :class => 'button-xs  btn-danger') unless user == current_user %>
+  	</div>
+  <% end %>
+  </div>
 </div>
