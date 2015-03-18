@@ -1,51 +1,62 @@
 <div class="well">
-	<h3> Title: <%= @test.title %></h3>
-	<h3> Category: <%= @test.category.title %></h3>
-	<p>Test attempt for <%= @test_attempt.user %> for <%= link_to "test", test_path(@test) %></p>
-	<%= link_to "Submit Test", submit_test_path(@test_attempt), method: :post, :class => "btn btn-success" %>
-	<h1> Questions </h1>
-	<div class="questions_slick">
-		<% @attempt_questions.each_with_index do |aq,index| %>
-			<div class="">
-				<h2>
-					Question No: <span class="qno"><%=index+1%></span> 
-				</h2>
-				<span class="pull-right">
-					<% if aq.review %>
-						<span class="btn btn-danger review" data-qid="<%=aq.id%>" data-index="<%=index%>">IN REVIEW</span>
-					<% else %>
-						<span class="btn btn-success review" data-qid="<%=aq.id%>" data-index="<%=index%>">REVIEW</span>
-					<%end%>
-				</span>
-				<h4>
-				<%= aq.question.title %>
-				</h4>
-				<p>
-				<%= aq.question.description %>
-				</p>
-				<% if aq.review %>
-					<script>
-						$(document).ready(function(){
-						$($('ul.slick-dots li')[<%=index%>]).toggleClass('red');
-							
-						});
-					</script>
-				<%end%>
-				<h3>Answers</h3>
-				<% @attempt_answers[aq.id].each do |aa| %>
-					<div class="test_answer">
-					  <div class="checkbox" >
-					    <label>
-					      <input type="checkbox" 
-					      <% if aa.choosen %> checked="" <%end%> class="attempt_answer" id="<%=aa.id%>"> 
-					      <%= aa.answer.text %>
-					      
-					    </label>
-					  </div>
+	<div class="row">
+		<div class="col-md-2">
+			<h3> <%= @test.title %></h3>
+			<h3> Category: <%= @test.category.title %></h3>
+			<%= link_to "Submit Test", submit_test_path(@test_attempt), method: :post, :class => "btn btn-success" %>
+		</div>
+		<div class="col-md-8">
+			<div class="questions_slick">
+				<% @attempt_questions.each_with_index do |aq,index| %>
+					<div class="">
+						<h2>
+							Question No: <span class="qno"><%=index+1%></span> 
+						</h2>
+						<span class="pull-right">
+							<% if aq.review %>
+								<span class="btn btn-danger review" data-qid="<%=aq.id%>" data-index="<%=index%>">IN REVIEW</span>
+							<% else %>
+								<span class="btn btn-success review" data-qid="<%=aq.id%>" data-index="<%=index%>">REVIEW</span>
+							<%end%>
+						</span>
+						<h4>
+						<%= aq.question.title %>
+						</h4>
+						<p>
+						<%= aq.question.description %>
+						</p>
+						<div class="img-qa"><%=image_tag aq.question.image if aq.question.image %></div>
+						<% if aq.review %>
+							<script>
+								$(document).ready(function(){
+									$($('ul.slick-dots li')[<%=index%>]).toggleClass('red');
+										
+								});
+							</script>
+						<%end%>
+						<hr>
+						<h3>Answers</h3>
+						<% @attempt_answers[aq.id].each do |aa| %>
+							<div class="test_answer">
+							  <div class="checkbox" >
+							    <label>
+							      <input type="checkbox" 
+							      <% if aa.choosen %> checked="" <%end%> class="attempt_answer" id="<%=aa.id%>"> 
+							      <%= aa.answer.text %>
+							      <div class="img-qaa"><%=image_tag aa.answer.image if aa.answer.image %></div>
+							    </label>
+							  </div>
+							</div>
+							<hr>
+						<%end%>
 					</div>
 				<%end%>
 			</div>
-		<%end%>
+		</div>
+		<div class="col-md-2">
+			<div id="dots">
+			</div>
+		</div>
 	</div>
 </div>
 <script>
@@ -71,4 +82,5 @@
       return $(this).text()=="REVIEW" ?"IN REVIEW":"REVIEW" ; 
     });;
 	});
+	$("ul.slick-dots").first().detach().appendTo('#dots')
 </script>
