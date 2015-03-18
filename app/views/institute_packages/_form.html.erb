@@ -1,0 +1,13 @@
+<%= form_for(@institute_package) do |f| %>
+  <%= errors_for @institute_package %>
+  <br><br>
+  <div class="form-group">
+   <%= f.collection_select(:institute_id, @institutes, :id, :name,{},{ :required => :true, :class => 'form-control floating-label',:placeholder => "Choose an institute"}) %>
+  </div>
+  <div class="form-group">
+   <%= f.collection_select(:package_id, @packages, :id, :name, {},{ :required => :true, :class => 'form-control floating-label',:placeholder => "Choose a package"}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Allow',  :class => 'btn btn-success' %>
+  </div>
+<% end %>

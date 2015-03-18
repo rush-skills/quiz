@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  institute_id: 
+  package_id: 
+  user_id: 
+
+two:
+  institute_id: 
+  package_id: 
+  user_id: 

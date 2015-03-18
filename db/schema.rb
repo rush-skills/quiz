@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315110009) do
+ActiveRecord::Schema.define(version: 20150318122902) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "text"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 20150315110009) do
   end
 
   add_index "categories", ["package_id"], name: "index_categories_on_package_id"
+
+  create_table "institute_packages", force: :cascade do |t|
+    t.integer  "institute_id"
+    t.integer  "package_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "institute_packages", ["institute_id"], name: "index_institute_packages_on_institute_id"
+  add_index "institute_packages", ["package_id"], name: "index_institute_packages_on_package_id"
+  add_index "institute_packages", ["user_id"], name: "index_institute_packages_on_user_id"
 
   create_table "institutes", force: :cascade do |t|
     t.string   "name"

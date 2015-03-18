@@ -1,6 +1,8 @@
 class TestingController < ApplicationController
-	def index
-		@tests = Test.all
+	before_filter :authorize_test, only: [:take,:submit,:result]
+  before_filter :authorize_test1, only: [:checked,:review]
+  def index
+		@tests = current_user.allowed_tests
 	end
 	def take
 
@@ -100,4 +102,12 @@ class TestingController < ApplicationController
   	test_attempt.marks = total.to_s
   	test_attempt.save!
   end
+
+  private
+    def authorize_test
+      redirect_to "/" unless current_user.allowed_to_take(params[:id])
+    end
+    def authorize_test1
+      redirect_to "/" unless current_user.allowed_to_take(params[:test_id])
+    end
 end

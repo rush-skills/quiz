@@ -10,11 +10,13 @@
       <div class="img-qa"><%= image_tag @institute.image if @institute.image %></div>
       <hr>
       <h2>Admins of the institute</h2>
-      <% @admins.each do |a| %>
-      	<div class="well well-sm">
-           <%= render partial: "users/mini_view", :locals => {:user => a} %>
-         </div>
-    	<%end%>
+      <div class="row">
+        <% @admins.each do |a| %>
+        	<div class="well well-sm">
+             <%= render partial: "users/mini_view", :locals => {:user => a} %>
+           </div>
+      	<%end%>
+      </div>
     	<hr>
       <h2>Students in this institute</h2>
       <div class="row">

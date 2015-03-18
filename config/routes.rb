@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :institute_packages
+
   resources :packages
 
   resources :attempt_answers

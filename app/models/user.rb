@@ -39,6 +39,23 @@ class User < ActiveRecord::Base
   def is_paid?
     self and self.institute and not self.iadmin?
   end
+  def allowed_tests
+    if self.institute
+      self.institute.allowed_tests
+    else
+      Test.where(free: true)
+    end
+  end
+  def to_s
+    self.name
+  end
+  def allowed_to_take(test_id)
+    if self.institute
+      self.institute.allowed_tests.include? Test.find(test_id)
+    else
+      return false
+    end
+  end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
