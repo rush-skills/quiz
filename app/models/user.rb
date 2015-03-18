@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     if self.institute
       self.institute.allowed_tests.include? Test.find(test_id)
     else
-      return false
+      Test.find(test_id).free
     end
   end
   # Include default devise modules. Others available are:

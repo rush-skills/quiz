@@ -8,7 +8,7 @@
 		<div class="col-md-8">
 			<div class="questions_slick">
 				<% @attempt_questions.each_with_index do |aq,index| %>
-					<div class="">
+					<div class="questions_slide">
 						<h2>
 							Question No: <span class="qno"><%=index+1%></span> 
 						</h2>
@@ -25,7 +25,11 @@
 						<p>
 						<%= aq.question.description %>
 						</p>
-						<div class="img-qa"><%=image_tag aq.question.image if aq.question.image %></div>
+						<% if aq.question.image.present? %>
+							<div class="img-qa">
+								<%=image_tag aq.question.image  %>
+							</div>
+						<% end %>
 						<% if aq.review %>
 							<script>
 								$(document).ready(function(){
@@ -35,15 +39,17 @@
 							</script>
 						<%end%>
 						<hr>
-						<h3>Answers</h3>
+						<h3>Answers</h3>	
 						<% @attempt_answers[aq.id].each do |aa| %>
 							<div class="test_answer">
 							  <div class="checkbox" >
 							    <label>
 							      <input type="checkbox" 
-							      <% if aa.choosen %> checked="" <%end%> class="attempt_answer" id="<%=aa.id%>"> 
+							      <% if aa.choosen %> checked="" <%end%> class="attempt_answer" data-index="<%=index%>" id="<%=aa.id%>"> 
 							      <%= aa.answer.text %>
-							      <div class="img-qaa"><%=image_tag aa.answer.image if aa.answer.image %></div>
+							      <% if aa.answer.image.present? %>
+							      	<div class="img-qaa"><%=image_tag aa.answer.image %></div>
+						      	<%end%>
 							    </label>
 							  </div>
 							</div>
@@ -83,5 +89,6 @@
       return $(this).text()=="REVIEW" ?"IN REVIEW":"REVIEW" ; 
     });;
 	});
-	$("ul.slick-dots").first().detach().appendTo('#dots')
+	$("ul.slick-dots").first().detach().appendTo('#dots');
+	//$('input[type="checkbox"]:checked[data-index=0]:not([id=""])')
 </script>
