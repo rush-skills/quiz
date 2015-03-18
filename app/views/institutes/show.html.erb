@@ -1,14 +1,25 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @institute.name %>
-</p>
-
-<p>
-  <strong>Details:</strong>
-  <%= @institute.details %>
-</p>
-
-<%= link_to 'Edit', edit_institute_path(@institute) %> |
-<%= link_to 'Back', institutes_path %>
+<%= link_to institutes_path do %><button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-navigation-arrow-back"></i></button><%end%>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="well">
+		  <h1><%= @institute.name %></h1>
+		  <h3><%= @institute.details %></h3>
+			<%= link_to 'Edit', edit_institute_path(@institute), :class => "btn btn-warning" %>
+      <%= link_to 'Delete', @institute, method: :delete, data: { confirm: 'Are you sure?' } ,:class => "btn btn-danger"%><br>
+      <div class="img-qa"><%= image_tag @institute.image if @institute.image %></div>
+      <hr>
+      <h2>Admins of the institute</h2>
+      <% @admins.each do |a| %>
+      	<%= render partial: "user/mini_view", :locals => {:user => a} %>
+    	<%end%>
+    	<hr>
+      <h2>Students in this institute</h2>
+      <div class="row">
+      	<% @students.each do |a| %>
+      	<%= render partial: "user/mini_view", :locals => {:user => a} %>
+    	<%end%>
+    	</div>
+		</div>
+	</div>
+</div>

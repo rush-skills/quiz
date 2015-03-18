@@ -1,16 +1,25 @@
-<div class="container">
-  <div class="row">
-    <h3>Users</h3>
-    <div class="column">
-      <table class="table">
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <%= render user %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <div class="well">
+      <h3>Users</h3>
+      <div class="row">
+        <div class="col-md-3">
+        <b>Name</b>
+        </div>
+        <div class="col-md-3">
+        <b>Email</b>
+        </div>
+        <div class="col-md-3">
+        <b>Institute</b>
+        </div>
+        <div class="col-md-3">
+        <b>Role</b>
+        </div>
+      </div>
+      <hr>
+      <% @users.each do |user| %>
+          <%= render user %>
+      <% end %>
     </div>
   </div>
 </div>

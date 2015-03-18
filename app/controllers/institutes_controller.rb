@@ -2,6 +2,36 @@ class InstitutesController < ApplicationController
   before_action :set_institute, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
   
+  def add_user_to_institute
+    user = User.find(params[:uid])
+    @institute = Institute.find(params[:iid])
+    authorize @institute
+    user.institute = @institute
+    user.role = 1
+    user.save!
+    redirect_to @institute
+  end
+
+  def add_admin_to_institute
+    user = User.find(params[:uid])
+    @institute = Institute.find(params[:iid])
+    authorize @institute
+    user.institute = @institute
+    user.role = 1
+    user.save!
+    redirect_to @institute
+  end
+
+  def add_user_to_current_institute
+    user = User.find(params[:uid])
+    @institute = current_user.institute
+    authorize @institute
+    user.institute = @institute
+    user.role = 1
+    user.save!
+    redirect_to @institute
+  end
+
   # GET /institutes
   # GET /institutes.json
   def index
@@ -13,6 +43,8 @@ class InstitutesController < ApplicationController
   # GET /institutes/1.json
   def show
     authorize @institute
+    @admins = User.where(role:3,institute_id: @institute.id)
+    @students = User.where(role:1,institute_id: @institute.id)
   end
 
   # GET /institutes/new

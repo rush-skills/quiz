@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
   has_many :tests
   has_many :test_attempts
-  has_one :institute
+  belongs_to :institute
   validates :name, presence: true
   mount_uploader :image, ImageUploader
   def set_default_role

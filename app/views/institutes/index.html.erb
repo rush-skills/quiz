@@ -1,29 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="well pwell">
+<h1>Listing Institutes<span class="pull-right"><%= link_to new_institute_path do %><button class="btn btn-fab btn-raised btn-success"><i class="mdi-content-add"></i></button><%end%></span></h1><br>
 
-<h1>Listing Institutes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Details</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+    <div class="row nolink">
     <% @institutes.each do |institute| %>
-      <tr>
-        <td><%= institute.name %></td>
-        <td><%= institute.details %></td>
-        <td><%= link_to 'Show', institute %></td>
-        <td><%= link_to 'Edit', edit_institute_path(institute) %></td>
-        <td><%= link_to 'Destroy', institute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%=link_to institute do %>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="well">
+          <h5>
+            <b>Name:</b><%= institute.name %><br><br>
+          </h5>
+          <p><%= institute.details %></p>
+          <div class="img-qaa">
+            <%= image_tag institute.image if institute.image %>
+          </div>
+        </div>
+      </div>
+      <%end%>
     <% end %>
-  </tbody>
-</table>
+    </div>
 
-<br>
+</div>
 
-<%= link_to 'New Institute', new_institute_path %>
