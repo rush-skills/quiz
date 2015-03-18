@@ -19,11 +19,13 @@ Rails.application.routes.draw do
   post '/taketest/:id' => 'testing#submit', as: 'submit_test'
   get '/taketest/:test_id/:id' => 'testing#checked', as: 'checked_test'
   get '/taketest/:test_id/review/:id' => 'testing#review', as: 'review_test'
-
-  get '/institute/:iid/:uid/add' => 'institute#add_user_to_institute'
-  get 'institute/:uid/add' => 'institute#add_user_to_current_institute'
-
-  get '/institute/:iid/:uid/iadd' => 'institute#add_admin_to_institute'
+  
+  get '/superadmin/verified_user' => 'superadmin#verified_user', as: 'verified_user'
+  get '/superadmin/admin' => 'superadmin#admin', as: 'admin'
+  get '/superadmin/insitute_admin' => 'superadmin#insitute_admin', as: 'insitute_admin'
+  get '/superadmin/prof' => 'superadmin#prof', as: 'professor'
+  get '/superadmin/reports' => 'superadmin#report', as: 'reports'
+  get '/superadmin/package' => 'superadmin#package', as: 'change_insitute_package'
 
   resources :tests do
     resources :questions

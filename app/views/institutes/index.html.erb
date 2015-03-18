@@ -1,17 +1,17 @@
-<div class="well pwell">
+<div class="well pwell clearfix">
 <h1>Listing Institutes<span class="pull-right"><%= link_to new_institute_path do %><button class="btn btn-fab btn-raised btn-success"><i class="mdi-content-add"></i></button><%end%></span></h1><br>
 
 
-    <div class="row nolink">
+    <div class="row nolink clearfix">
     <% @institutes.each do |institute| %>
       <%=link_to institute do %>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="well">
+      <div class="col-md-3 col-sm-6 col-xs-12 clearfix" >
+        <div class="well clearfix">
           <h5>
             <b>Name:</b><%= institute.name %><br><br>
           </h5>
           <p><%= institute.details %></p>
-          <div class="img-qaa">
+          <div class="img-qaa clearfix">
             <%= image_tag institute.image if institute.image %>
           </div>
         </div>
@@ -21,4 +21,3 @@
     </div>
 
 </div>
-

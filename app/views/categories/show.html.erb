@@ -4,7 +4,7 @@
 	<div class="col-md-10 col-md-offset-1">
 		<div class="well">
 		  <h1><%= @category.title %></h1>
-		  <h3><b>Package:</b> <%=link_to @category.package.name, @category.package %></h3>
+		  <h3><b>Package:</b> <%=link_to @category.package.name, @category.package if @category.package%></h3>
 			<%= link_to 'Edit', edit_category_path(@category), :class => "btn btn-warning" %>
       <%= link_to 'Delete', @category, method: :delete, data: { confirm: 'Are you sure?' } ,:class => "btn btn-danger"%><br>
       <hr>

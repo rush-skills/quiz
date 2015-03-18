@@ -11,13 +11,17 @@
       <hr>
       <h2>Admins of the institute</h2>
       <% @admins.each do |a| %>
-      	<%= render partial: "user/mini_view", :locals => {:user => a} %>
+      	<div class="well well-sm">
+           <%= render partial: "users/mini_view", :locals => {:user => a} %>
+         </div>
     	<%end%>
     	<hr>
       <h2>Students in this institute</h2>
       <div class="row">
       	<% @students.each do |a| %>
-      	<%= render partial: "user/mini_view", :locals => {:user => a} %>
+         <div class="well well-sm">
+      	   <%= render partial: "users/mini_view", :locals => {:user => a} %>
+         </div>
     	<%end%>
     	</div>
 		</div>

@@ -6,7 +6,7 @@
 		<%= link_to user.email, user if user.email %>
 	</div>
 	<div class="col-md-3">
-		<%= link_to user.institute if user.institute and current_user.admin? %>
+		<%= link_to user.institute.name, user.institute if user.institute  %>
 	</div>
 	<div class="col-md-3">
 		<%= user.role %>

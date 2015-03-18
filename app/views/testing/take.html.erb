@@ -3,7 +3,7 @@
 		<div class="col-md-2">
 			<h3> <%= @test.title %></h3>
 			<h3> Category: <%= @test.category.title %></h3>
-			<%= link_to "Submit Test", submit_test_path(@test_attempt), method: :post, :class => "btn btn-success" %>
+			
 		</div>
 		<div class="col-md-8">
 			<div class="questions_slick">
@@ -54,7 +54,8 @@
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div id="dots">
+			<div id="dots" style="text-align: center !important">
+			<%= link_to "Submit Test", submit_test_path(@test_attempt), method: :post, :class => "btn btn-success" %><br><br>
 			</div>
 		</div>
 	</div>
